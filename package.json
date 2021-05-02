@@ -1,0 +1,25 @@
+{
+  "name": "discord-trout",
+  "version": "1.0.0",
+  "description": "Sometimes you gotta slap a person with a large trout",
+  "main": "index.js",
+  "scripts": {
+    "start": "node -r dotenv/config index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ianmitchell/discord-trout.git"
+  },
+  "author": "Ian Mitchell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ianmitchell/discord-trout/issues"
+  },
+  "homepage": "https://github.com/ianmitchell/discord-trout#readme",
+  "dependencies": {
+    "discord-interactions": "^2.0.2",
+    "dotenv": "^8.2.0",
+    "raw-body": "^2.4.1"
+  }
+}
