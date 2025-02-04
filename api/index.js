@@ -6,7 +6,7 @@ const {
 const getRawBody = require('raw-body');
 
 const SLAP_COMMAND = {
-  name: 'Slap',
+  name: 'slap',
   description: 'Sometimes you gotta slap a person with a large trout',
   options: [
     {
@@ -16,19 +16,46 @@ const SLAP_COMMAND = {
       required: true,
     },
   ],
+  contexts: [
+    0,
+    1,
+    2,
+  ],
+  integration_types: [
+    1,
+    2,
+  ],
 };
 
 const INVITE_COMMAND = {
-  name: 'Invite',
-  description: 'Get an invite link to add the bot to your server',
+  name: 'invite',
+  description: 'Get an invite link to add the bot',
+  contexts: [
+    0,
+    1,
+    2,
+  ],
+  integration_types: [
+    1,
+    2,
+  ],
 };
 
 const SUPPORT_COMMAND = {
-  name: 'Support',
+  name: 'support',
   description: 'Like this bot? Support me!',
+  contexts: [
+    0,
+    1,
+    2,
+  ],
+  integration_types: [
+    1,
+    2,
+  ],
 };
 
-const INVITE_URL = `https://discord.com/oauth2/authorize?client_id=${process.env.APPLICATION_ID}&scope=applications.commands`;
+const INVITE_URL = `https://discord.com/oauth2/authorize?client_id=${process.env.APPLICATION_ID}`;
 
 /**
  * Gotta see someone 'bout a trout
