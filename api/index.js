@@ -73,7 +73,7 @@ module.exports = async (request, response) => {
 						response.status(200).send({
 							type: 4,
 							data: {
-								content: `*<@${command.user.id}> slaps <@${command.data.options[0].value}> around a bit with a large trout*`,
+								content: `*<@${command.user?.id || command.member?.user?.id}> slaps <@${command.data.options[0].value}> around a bit with a large trout*`,
 							},
 						});
 						console.log("Slap Request");
