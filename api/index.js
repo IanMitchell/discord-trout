@@ -6,6 +6,7 @@ const {
 const getRawBody = require("raw-body");
 
 const SLAP_COMMAND = {
+	type: 1,
 	name: "slap",
 	description: "Sometimes you gotta slap a person with a large trout",
 	options: [
@@ -20,7 +21,15 @@ const SLAP_COMMAND = {
 	integration_types: [0, 1],
 };
 
+const USER_CONTEXT_MENU_SLAP_COMMAND = {
+	type: 2,
+	name: "Slap",
+	contexts: [0, 1, 2],
+	integration_types: [0, 1],
+};
+
 const INVITE_COMMAND = {
+	type: 1,
 	name: "invite",
 	description: "Get an invite link to add the bot",
 	contexts: [0, 1, 2],
@@ -28,6 +37,7 @@ const INVITE_COMMAND = {
 };
 
 const SUPPORT_COMMAND = {
+	type: 1,
 	name: "support",
 	description: "Like this bot? Support me!",
 	contexts: [0, 1, 2],
@@ -70,13 +80,26 @@ module.exports = async (request, response) => {
 			} else if (command.type === InteractionType.APPLICATION_COMMAND) {
 				switch (command.data.name.toLowerCase()) {
 					case SLAP_COMMAND.name.toLowerCase():
-						response.status(200).send({
-							type: 4,
-							data: {
-								content: `*<@${command.user?.id || command.member?.user?.id}> slaps <@${command.data.options[0].value}> around a bit with a large trout*`,
-							},
-						});
-						console.log("Slap Request");
+						if (command.data.type === SLAP_COMMAND.type) {
+							response.status(200).send({
+								type: 4,
+								data: {
+									content: `*<@${command.user?.id || command.member?.user?.id}> slaps <@${command.data.options[0].value}> around a bit with a large trout*`,
+								},
+							});
+							console.log("Slap Request");
+						} 
+						else if (command.data.type === USER_CONTEXT_MENU_SLAP_COMMAND.type) {
+							response.status(200).send({
+								type: 4,
+								data: {
+									content: `*<@${command.user?.id || command.member?.user?.id}> slaps <@${command.data.target_id}> around a bit with a large trout*`,
+								},
+							});
+							console.log("User Context Menu Slap Request");
+						}
+						break;
+					case USER_CONTEXT_MENU_SLAP_COMMAND.name.toLowerCase():
 						break;
 					case INVITE_COMMAND.name.toLowerCase():
 						response.status(200).send({
