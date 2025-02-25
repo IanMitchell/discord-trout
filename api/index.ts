@@ -86,8 +86,7 @@ export async function POST(request: Request) {
 			return Response.json({ error: "Bad request signature" }, { status: 401 });
 		}
 
-		const body = await request.json();
-		const command = JSON.parse(body);
+		const command = await request.json();
 
 		switch (command.type) {
 			case InteractionType.Ping: {
