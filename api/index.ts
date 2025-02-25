@@ -1,6 +1,7 @@
 import {
 	InteractionResponseType,
 	InteractionType,
+	MessageFlags,
 } from "discord-api-types/v10";
 import { isValidRequest } from "discord-verify/node";
 import {
@@ -17,7 +18,7 @@ function handle(command: any) {
 		case SLAP_COMMAND.name: {
 			console.log("Slap Request");
 			return Response.json({
-				type: 4,
+				type: InteractionResponseType.ChannelMessageWithSource,
 				data: {
 					content: `*<@${
 						command.user?.id || command.member?.user?.id
@@ -31,7 +32,7 @@ function handle(command: any) {
 		case SLAP_COMMAND_CONTEXT_MENU.name: {
 			console.log("Slap Request");
 			return Response.json({
-				type: 4,
+				type: InteractionResponseType.ChannelMessageWithSource,
 				data: {
 					content: `*<@${
 						command.user?.id || command.member?.user?.id
@@ -45,10 +46,10 @@ function handle(command: any) {
 		case INVITE_COMMAND.name: {
 			console.log("Invite request");
 			return Response.json({
-				type: 4,
+				type: InteractionResponseType.ChannelMessageWithSource,
 				data: {
 					content: INVITE_URL,
-					flags: 64,
+					flags: MessageFlags.Ephemeral,
 				},
 			});
 		}
@@ -56,11 +57,11 @@ function handle(command: any) {
 		case SUPPORT_COMMAND.name: {
 			console.log("Support request");
 			return Response.json({
-				type: 4,
+				type: InteractionResponseType.ChannelMessageWithSource,
 				data: {
 					content:
 						"Thanks for using my bot! Let me know what you think on twitter (@IanMitchel1). If you'd like to contribute to hosting costs, you can donate at https://github.com/sponsors/ianmitchell",
-					flags: 64,
+					flags: MessageFlags.Ephemeral,
 				},
 			});
 		}
